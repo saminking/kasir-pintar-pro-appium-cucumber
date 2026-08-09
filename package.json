@@ -1,0 +1,43 @@
+{
+  "name": "kasir-pintar-pro-appium-cucumber",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Android CRUD automation for Kasir Pintar Pro using Appium, WebdriverIO, Cucumber BDD, and TypeScript.",
+  "type": "module",
+  "scripts": {
+    "test": "wdio run ./wdio.conf.ts",
+    "test:crud": "cross-env CUCUMBER_TAGS=@crud wdio run ./wdio.conf.ts",
+    "test:create": "cross-env CUCUMBER_TAGS=@create wdio run ./wdio.conf.ts",
+    "test:read": "cross-env CUCUMBER_TAGS=@read wdio run ./wdio.conf.ts",
+    "test:update": "cross-env CUCUMBER_TAGS=@update wdio run ./wdio.conf.ts",
+    "test:delete": "cross-env CUCUMBER_TAGS=@delete wdio run ./wdio.conf.ts",
+    "test:dry-run": "node --import tsx ./node_modules/@cucumber/cucumber/bin/cucumber-js --dry-run --import 'src/steps/**/*.ts' 'src/features/**/*.feature'",
+    "typecheck": "tsc --noEmit",
+    "verify:project": "node ./scripts/verify-project.mjs",
+    "verify": "npm run typecheck && npm run verify:project && npm run test:dry-run",
+    "appium:setup": "appium driver install uiautomator2",
+    "appium:doctor": "appium driver doctor uiautomator2"
+  },
+  "engines": {
+    "node": "^20.19.0 || ^22.12.0 || >=24.0.0",
+    "npm": ">=10"
+  },
+  "devDependencies": {
+    "@types/node": "26.2.0",
+    "@wdio/appium-service": "9.30.1",
+    "@wdio/cli": "9.30.1",
+    "@wdio/cucumber-framework": "9.30.1",
+    "@wdio/globals": "9.29.1",
+    "@wdio/junit-reporter": "9.30.1",
+    "@wdio/local-runner": "9.30.1",
+    "@wdio/spec-reporter": "9.30.1",
+    "@wdio/types": "9.30.1",
+    "appium": "3.6.0",
+    "appium-inspector-plugin": "^2026.7.1",
+    "appium-uiautomator2-driver": "8.2.2",
+    "cross-env": "10.0.0",
+    "dotenv": "17.4.2",
+    "tsx": "4.23.11",
+    "typescript": "5.9.3"
+  }
+}
